@@ -1,0 +1,80 @@
+<html>
+  <head>
+      <title>Sigma Neo4j example</title>
+      <script src="https://use.fontawesome.com/bd149a0111.js"></script>
+      <style>
+        #graph-container {
+          width:80%;
+          margin: 0 auto;
+          height: 800px;
+        }
+      </style>
+  </head>
+  <body>
+        <div id="graph-container"></div>
+  <script type="text/javascript" src="neosig-1.0.0.js"></script></body>
+  <script>
+    var neo4j = {
+        url: 'bolt://localhost',
+        login: 'neo4j',
+        password: 'admin'
+    };
+
+    var style = {
+      labels: {
+        Person : {
+          label: 'name',
+          color: '#654321',
+          size: 10,
+          icon: {
+            name: 'f007',
+            color: '#FFF',
+            scale: 1.0
+          }
+        },
+        Movie : {
+          label: 'title',
+          color: '#123456',
+          size: 10,
+          icon: {
+            name: 'f008',
+            color: '#FFF',
+            scale: 1.0
+          }
+        }
+      },
+      edges: {
+        ACTED_IN: {
+          color: '#040404',
+          size:2
+        }
+      }
+    };
+
+    Neo4jGraph(neo4j, style, 'MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 20').then( function(result) {
+      var sig = new sigma({
+          graph: result,
+          renderer: {
+            container: 'graph-container',
+            type: 'canvas'
+          },
+          settings: {
+            edgeLabelThreshold:1,
+            drawEdgeLabels:true,
+            edgeLabelSize:'fixed',
+            defaultEdgeLabelSize:8,
+            enableEdgeHovering: true,
+            edgeHoverExtremities: true
+          }
+      });
+
+      // enable drag'n'drop
+      sigma.plugins.dragNodes(sig, sig.renderers[0]);
+
+      // start layout
+      sig.startForceAtlas2({worker: true, barnesHutOptimize: false});
+      setTimeout(() => { sig.stopForceAtlas2() }, 5000);
+
+    });
+  </script>
+</html>

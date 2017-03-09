@@ -1,0 +1,17 @@
+{
+  "presets": [
+	"es2015",
+	"stage-0"
+  ],
+  "plugins": [
+	["babel-root-import", [{
+	  "rootPathPrefix": "~",
+	  "rootPathSuffix": "src/js"
+	}]]
+  ],
+  "env": {
+	"test": {
+	  "plugins": [ [ "__coverage__", { "ignore": "test/*.js" } ] ]
+	}
+  }
+}

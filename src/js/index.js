@@ -1,0 +1,43 @@
+import "sigma/src/sigma.core.js";
+import "sigma/src/conrad.js";
+import "sigma/src/utils/sigma.utils.js";
+import "sigma/src/utils/sigma.polyfills.js";
+import "sigma/src/sigma.settings.js";
+import "sigma/src/classes/sigma.classes.dispatcher.js";
+import "sigma/src/classes/sigma.classes.configurable.js";
+import "sigma/src/classes/sigma.classes.graph.js";
+import "sigma/src/classes/sigma.classes.camera.js";
+import "sigma/src/classes/sigma.classes.quad.js";
+import "sigma/src/classes/sigma.classes.edgequad.js";
+import "sigma/src/captors/sigma.captors.touch.js";
+import "sigma/src/captors//sigma.captors.mouse.js";
+import "sigma/src/renderers/sigma.renderers.canvas.js";
+import "sigma/src/renderers/sigma.renderers.svg.js";
+import "sigma/src/renderers/sigma.renderers.webgl.js";
+import "sigma/src/renderers/sigma.renderers.def.js";
+import "sigma/src/renderers/canvas/sigma.canvas.labels.def.js";
+import "sigma/src/renderers/canvas/sigma.canvas.extremities.def.js";
+import "sigma/src/middlewares/sigma.middlewares.rescale.js";
+import "sigma/src/middlewares/sigma.middlewares.copy.js";
+import "sigma/src/misc/sigma.misc.animation.js";
+import "./sigma-custom-render/sigma.misc.bindEvents.js";
+import "sigma/src/misc/sigma.misc.bindDOMEvents.js";
+import "sigma/src/misc/sigma.misc.drawHovers.js";
+import "sigma/plugins/sigma.layout.forceAtlas2/worker.js";
+import "sigma/plugins/sigma.layout.forceAtlas2/supervisor.js";
+import "./sigma-custom-render/sigma.canvas.utils.js";
+import "./sigma-custom-render/sigma.canvas.hovers.def.js";
+import "./sigma-custom-render/sigma.canvas.nodes.def.js";
+import "./sigma-custom-render/sigma.canvas.edges.paracurve.js";
+import "./sigma-custom-render/sigma.canvas.edgehovers.paracurve.js";
+import "./sigma-custom-render/sigma.canvas.edges.labels.paracurve.js";
+import "./sigma-custom-render/sigma.extend.graph.js";
+import "sigma/plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.js";
+import "sigma/plugins/sigma.plugins.animate/sigma.plugins.animate.js";
+import "sigma/plugins/sigma.layout.forceAtlas2/worker.js";
+import "sigma/plugins/sigma.layout.forceAtlas2/supervisor.js";
+
+import {neo4jGraph} from './neosigma';
+
+
+window.Neo4jGraph = neo4jGraph;

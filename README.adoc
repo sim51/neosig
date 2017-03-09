@@ -1,0 +1,100 @@
+= NeoSig
+
+An integration of Sigma.js with Neo4j, with some customs renderers that permit to make parallele curves
+
+== How to use it 
+
+* import the script
+
+----
+<script type="text/javascript" src="https://rawgit.com/sim51/neosig/master/docs/neosig.bundle-1.0.0.js"></script>
+----
+
+* Import fontawesome if you need to display some icon 
+
+----
+<script src="https://use.fontawesome.com/bd149a0111.js"></script>
+----
+
+
+* Create an object configuration for Neo4j
+
+----
+var neo4j = {
+    url: 'bolt://localhost',
+    login: 'neo4j',
+    password: 'admin'
+};
+----
+
+* Create a graph style object : 
+
+var style = {
+    labels: {
+    Person : {
+        // field to display (if ommit, node's id will be displayed)
+        label: 'name',
+        color: '#654321',
+        size: 10,
+        icon: {
+            // the fontawesome unicode
+            name: 'f007',
+            color: '#FFF',
+            scale: 1.0
+        }
+    },
+    Movie : {
+        label: 'title',
+        color: '#123456',
+        size: 10,
+        icon: {
+        name: 'f008',
+        color: '#FFF',
+        scale: 1.0
+        }
+    }
+    },
+    edges: {
+        ACTED_IN: {
+            color: '#040404',
+            size:2
+        }
+    }
+};
+
+* Call the `Neo4jGraph` function to get the result of your query as a graph structure compatible with Sigma. 
+This function takes 4 attributs :
+** The Neo4j configuration object
+** The graph style object
+** A cypher query
+** Parameters of the cypher query
+
+----
+Neo4jGraph(neo4j, style, 'MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 20').then( function(result) {
+      
+      var sig = new sigma({
+          graph: result,
+          renderer: {
+            container: 'graph-container',
+            type: 'canvas'
+          },
+          settings: {
+            edgeLabelThreshold:1,
+            drawEdgeLabels:true,
+            edgeLabelSize:'fixed',
+            defaultEdgeLabelSize:8,
+            enableEdgeHovering: true,
+            edgeHoverExtremities: true
+          }
+      });
+      
+      // enable drag'n'drop
+      sigma.plugins.dragNodes(sig, sig.renderers[0]);
+
+      // start layout
+      sig.startForceAtlas2({worker: true, barnesHutOptimize: false});
+      setTimeout(() => { sig.stopForceAtlas2() }, 5000);
+      
+});
+----
+
