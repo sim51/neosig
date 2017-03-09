@@ -1,17 +1,19 @@
 = NeoSig
 
-An integration of Sigma.js with Neo4j, with some customs renderers that permit to make parallele curves
+An integration of `Sigma.js` with `Neo4j`, with some customs renderers to make parallele curves
 
 == How to use it 
 
 * import the script
 
+[source,html]
 ----
 <script type="text/javascript" src="https://rawgit.com/sim51/neosig/master/docs/neosig.bundle-1.0.0.js"></script>
 ----
 
-* Import fontawesome if you need to display some icon 
+* Import `fontawesome` if you need to display some icon 
 
+[source,html]
 ----
 <script src="https://use.fontawesome.com/bd149a0111.js"></script>
 ----
@@ -19,6 +21,7 @@ An integration of Sigma.js with Neo4j, with some customs renderers that permit t
 
 * Create an object configuration for Neo4j
 
+[source,javascript]
 ----
 var neo4j = {
     url: 'bolt://localhost',
@@ -29,6 +32,8 @@ var neo4j = {
 
 * Create a graph style object : 
 
+[source,javascript]
+----
 var style = {
     labels: {
     Person : {
@@ -61,6 +66,8 @@ var style = {
         }
     }
 };
+----
+
 
 * Call the `Neo4jGraph` function to get the result of your query as a graph structure compatible with Sigma. 
 This function takes 4 attributs :
@@ -69,6 +76,7 @@ This function takes 4 attributs :
 ** A cypher query
 ** Parameters of the cypher query
 
+[source,javascript]
 ----
 Neo4jGraph(neo4j, style, 'MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 20').then( function(result) {
       
@@ -98,3 +106,6 @@ Neo4jGraph(neo4j, style, 'MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 20').then( funct
 });
 ----
 
+== Example
+
+If you have a running `Neo4j` with the movie dataset on your local computer, and if the neo4j user password is `admin`, you can test it here : https://sim51.github.io/neosig/
