@@ -4,7 +4,9 @@ var argv = require('yargs').argv;
 var package = require('./package.json');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var DEBUG = !argv.release;
+var DEBUG = true;
+if(process.env.NODE_ENV == 'production')
+  DEBUG = false;
 
 // Paths
 var basePath = path.resolve(__dirname);
@@ -30,20 +32,19 @@ var wConfig = {
       // Enable ES6 support
       { test: /\.js?$/, exclude: [paths.nodeModules], loaders: ['ng-annotate-loader', 'babel-loader'] },
       //load sigma as global
-      { test: /.*\/sigma.+\.js$/, loaders: ['script-loader'] },
-      // CSS and LESS support here :)
-      { test: /\.css$/, loaders: [ 'style-loader', 'css-loader' ] },
-      { test: /\.less$/, loaders: [ 'style-loader', 'css-loader', 'less-loader' ] },
-      { test: /\.json$/,  loader: 'json-loader' },
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,    loader: "url-loader?limit=10000&minetype=application/font-woff" },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,   loader: "file-loader" }
+      { test: /.*\/sigma.+\.js$/, loaders: ['script-loader'] }
     ]
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
-    })
+    }),
+    new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': process.env.NODE_ENV
+    }
+  })
   ],
   cache: DEBUG,
   devtool: (DEBUG ? '#inline-source-map' : false)
@@ -71,8 +72,13 @@ if (DEBUG) {
 if (!DEBUG) {
   // Minification and merging in production for small(ish) builds!
   wConfig.plugins = wConfig.plugins.concat([
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false },
+      comments: false,
+      sourceMap: false,
+      mangle: true,
+      minimize: true
+    }),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
