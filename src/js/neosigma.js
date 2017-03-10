@@ -52,7 +52,7 @@ class NeoSigma {
   _neo4jToSigmaEdge(edge){
     var sEdge = {
       id: edge.identity.toString(),
-      type: edge.type,
+      rel_type: edge.type,
       source: edge.start.toString(),
       target: edge.end.toString(),
       properties: edge.properties,
@@ -64,11 +64,11 @@ class NeoSigma {
 
     // Look if there is a defined style for the edge type
     if(this.style.edges){
-      let style = this.style.edges[sEdge.type];
+      let style = this.style.edges[sEdge.rel_type];
       if(style) {
           sEdge.size =  style.size || 2;
           sEdge.color =  style.color || '#000';
-          sEdge.label = sEdge.properties[style.label] || sEdge.type;
+          sEdge.label = sEdge.properties[style.label] || sEdge.rel_type;
       }
     }
 

@@ -191,7 +191,7 @@
           ) {
 
               if (source.id === target.id) {
-                cp = sigma.canvas.utils.getSelfLoopControlPoints(source[prefix + 'x'], source[prefix + 'y'], source[prefix + 'size'], source.order);
+                cp = sigma.canvas.utils.getSelfLoopControlPoints(source[prefix + 'x'], source[prefix + 'y'], source[prefix + 'size'], edge[prefix + 'size'], edge.order);
                 if (
                   sigma.utils.isPointOnBezierCurve(
                   modifiedX,

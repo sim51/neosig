@@ -8,9 +8,13 @@
       sigma.classes.graph.addMethod('getCardinalityBetweenNodes', function(source, target) {
         let result = 0;
 
-        let neighbors = this.inNeighborsIndex[source];
-        if (neighbors[target]){
-          result = Object.keys(neighbors[target]).length;
+        let inNeighbors = this.inNeighborsIndex[source];
+        if (inNeighbors[target]){
+          result = Object.keys(inNeighbors[target]).length;
+        }
+        let outNeighbors = this.outNeighborsIndex[source];
+        if (outNeighbors[target]){
+          result += Object.keys(outNeighbors[target]).length;
         }
         return result;
       });

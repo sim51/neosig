@@ -39,17 +39,20 @@ var wConfig = {
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
-    }),
-    new webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': process.env.NODE_ENV
-    }
-  })
+    })
   ],
   cache: DEBUG,
   devtool: (DEBUG ? '#inline-source-map' : false)
 };
 
+if(!DEBUG)
+  wConfig.plugins.push(
+    new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': process.env.NODE_ENV
+    }
+    })
+  );
 if (DEBUG) {
   // Entry points - In production we'll have only the `main.jsx` entry.
   // However in DEBUG, we'll enable Webpacks "Hot Module Replacement"
