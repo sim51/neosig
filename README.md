@@ -1,46 +1,41 @@
-= NeoSig
+# NeoSig
 
 An integration of `Sigma.js` with `Neo4j`, with some customs renderers to make parallele curves
 
-== How to use it
+## How to use it
 
-* import the script
+* Import the script
 
-[source,html]
-----
-<script type="text/javascript" src="https://rawgit.com/sim51/neosig/master/docs/neosig.bundle-1.1.0.js"></script>
-----
+```
+<script type="text/javascript" src="https://rawgit.com/sim51/neosig/master/docs/neosig.bundle-1.2.1.js"></script>
+```
 
 * Import `neo4j-driver`
 
-[source,html]
-----
+```
 <script src="https://cdn.jsdelivr.net/npm/neo4j-driver"></script>
-----
+```
 
 * OPTINAL: Import `fontawesome` if you need to display some icons
 
-[source,html]
-----
+```
 <script src="https://use.fontawesome.com/bd149a0111.js"></script>
-----
+```
 
 * Create an object configuration for Neo4j
 
-[source,javascript]
-----
+```
 var neo4j = {
     url: 'bolt://localhost',
     user: 'neo4j',
     password: 'admin',
     driver: {} // this is the neo4j driver configuration if neede (you can omit it
 };
-----
+```
 
 * Create a graph style object :
 
-[source,javascript]
-----
+```
 var style = {
     labels: {
       Person : {
@@ -77,7 +72,7 @@ var style = {
         }
     }
 };
-----
+```
 
 
 * Call the `Neo4jGraph` function to get the result of your query as a graph structure compatible with Sigma.
