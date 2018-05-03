@@ -1,0 +1,86 @@
+<html>
+  <head>
+      <meta charset="UTF-8">
+      <title>Sigma Neo4j example</title>
+      <script src="https://use.fontawesome.com/bd149a0111.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/neo4j-driver"></script>
+      <style>
+        #graph-container {
+          width:80%;
+          margin: 0 auto;
+          height: 800px;
+        }
+      </style>
+  <script type="text/javascript" src="neosig-1.2.1.js"></script></head>
+  <body>
+    <div id="graph-container"></div>
+    <script>
+      var neo4jConfig = {
+          url: 'bolt://localhost:7687',
+          user: 'neo4j',
+          password: 'admin'
+      };
+
+      var style = {
+        labels: {
+          Person : {
+            label: 'name',
+            color: '#654321',
+            size: 10,
+            icon: {
+              name: 'f007',
+              color: '#FFF',
+              scale: 1.0
+            }
+          },
+          Movie : {
+            label: 'title',
+            color: '#123456',
+            size: 10,
+            icon: {
+              name: 'f008',
+              color: '#FFF',
+              scale: 1.0
+            }
+          }
+        },
+        edges: {
+          ACTED_IN: {
+            color: '#040404',
+            size:1,
+            label: 'roles'
+          },
+          DIRECTED: {
+            color: '#040404',
+            size:1,
+            label: 'roles'
+          }
+        }
+      };
+
+      Neo4jGraph(neo4jConfig, style, 'MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 20').then( function(result) {
+        var sig = new sigma({
+            graph: result,
+            renderer: {
+              container: 'graph-container',
+              type: 'canvas'
+            },
+            settings: {
+              edgeLabelThreshold:1,
+              drawEdgeLabels:true,
+              edgeLabelSize:'fixed',
+              defaultEdgeLabelSize:8,
+              enableEdgeHovering: true,
+              edgeHoverExtremities: true,
+              minArrowSize: 2
+            }
+        });
+
+        // start layout
+        sig.startForceAtlas2();
+        setTimeout(() => { sig.stopForceAtlas2() }, Math.log(result.nodes.length*result.edges.length)*1000);
+
+      });
+    </script>
+  </body>
+</html>
