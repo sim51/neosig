@@ -77,13 +77,13 @@ var style = {
 
 * Call the `Neo4jGraph` function to get the result of your query as a graph structure compatible with Sigma.
 This function takes 4 attributs :
+
 ** The Neo4j configuration object
 ** The graph style object
 ** A cypher query
 ** Parameters of the cypher query
 
-[source,javascript]
-----
+```
 Neo4jGraph(neo4j, style, 'MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 20').then( function(result) {
 
       var sig = new sigma({
@@ -109,7 +109,7 @@ Neo4jGraph(neo4j, style, 'MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 20').then( funct
       setTimeout(() => { sig.stopForceAtlas2() }, Math.log(result.nodes.length*result.edges.length)*1000);
 
 });
-----
+```
 
 == Example
 
