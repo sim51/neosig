@@ -63,11 +63,11 @@ function makeNewVersion() {
 function build() {
     # clean the repo
     echo "Cleaning project"
-    gulp clean
+    rm -rf docs
 
     # Build project
     echo "Building project"
-    gulp build
+    npm run build
 }
 
 
