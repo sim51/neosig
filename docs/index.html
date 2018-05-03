@@ -11,7 +11,7 @@
           height: 800px;
         }
       </style>
-  <script type="text/javascript" src="neosig-1.0.0.js"></script></head>
+  <script type="text/javascript" src="neosig-2.0.0.js"></script></head>
   <body>
     <div id="graph-container"></div>
     <script>
@@ -47,7 +47,12 @@
         edges: {
           ACTED_IN: {
             color: '#040404',
-            size:2,
+            size:1,
+            label: 'roles'
+          },
+          DIRECTED: {
+            color: '#040404',
+            size:1,
             label: 'roles'
           }
         }
@@ -66,12 +71,14 @@
               edgeLabelSize:'fixed',
               defaultEdgeLabelSize:8,
               enableEdgeHovering: true,
-              edgeHoverExtremities: true
+              edgeHoverExtremities: true,
+              minArrowSize: 2
             }
         });
 
-        // enable drag'n'drop
-        sigma.plugins.dragNodes(sig, sig.renderers[0]);
+        // start layout
+        sig.startForceAtlas2();
+        setTimeout(() => { sig.stopForceAtlas2() }, Math.log(result.nodes.length*result.edges.length)*1000);
 
       });
     </script>
