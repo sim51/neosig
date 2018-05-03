@@ -1,6 +1,6 @@
 {
   "name": "neosig",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "keywords" : ["neo4j", "sigma", "sigmajs", "graph", "browser", "cypher"],
     "homepage": "https://github.com/sim51/neosig",
     "bugs": "https://github.com/sim51/tank-browser/neosig",
