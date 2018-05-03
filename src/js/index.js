@@ -37,7 +37,6 @@ import "sigma/plugins/sigma.plugins.animate/sigma.plugins.animate.js";
 import "sigma/plugins/sigma.layout.forceAtlas2/worker.js";
 import "sigma/plugins/sigma.layout.forceAtlas2/supervisor.js";
 
-import {neo4jGraph} from './neosigma';
-
+import { neo4jGraph } from './neosigma';
 
 window.Neo4jGraph = neo4jGraph;
