@@ -82,8 +82,7 @@ This function takes 4 attributs :
 ** A cypher query
 ** Parameters of the cypher query
 
-[source,javascript]
-----
+```
 Neo4jGraph(neo4j, style, 'MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 20').then( function(result) {
 
       var sig = new sigma({
@@ -109,8 +108,8 @@ Neo4jGraph(neo4j, style, 'MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 20').then( funct
       setTimeout(() => { sig.stopForceAtlas2() }, Math.log(result.nodes.length*result.edges.length)*1000);
 
 });
-----
+```
 
-== Example
+## Example
 
 If you have a running `Neo4j` with the movie dataset on your local computer, and if the neo4j user password is `admin`, you can test it here : https://sim51.github.io/neosig/
