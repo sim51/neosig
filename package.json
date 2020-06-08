@@ -1,27 +1,35 @@
 {
   "name": "neosig",
   "version": "1.2.1",
-  "keywords" : ["neo4j", "sigma", "sigmajs", "graph", "browser", "cypher"],
-    "homepage": "https://github.com/sim51/neosig",
-    "bugs": "https://github.com/sim51/tank-browser/neosig",
-    "repository": {
-        "type": "git",
-        "url": "http://github.com/sim51/neosig.git"
-},
+  "keywords": [
+    "neo4j",
+    "sigma",
+    "sigmajs",
+    "graph",
+    "browser",
+    "cypher"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sim51/neosig",
+  "bugs": "https://github.com/sim51/neosig",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/sim51/neosig.git"
+  },
   "devDependencies": {
-    "@babel/preset-env": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.10.2",
     "babel-core": "6.26.3",
-    "babel-loader": "7.1.4",
+    "babel-loader": "8.1.0",
     "babel-preset-es2017": "^6.24.1",
     "babel-root-import": "4.1.8",
-    "eslint": "4.19.1",
-    "eslint-loader": "2.0.0",
-    "html-webpack-plugin": "3.2.0",
-    "neo4j-driver": "^1.6.0",
-    "webpack": "4.6.0",
-    "webpack-cli": "^2.1.2",
-    "webpack-dev-server": "3.1.11",
-    "imports-loader": "^0.8.0"
+    "eslint": "7.2.0",
+    "eslint-loader": "4.0.2",
+    "html-webpack-plugin": "4.3.0",
+    "imports-loader": "^0.8.0",
+    "neo4j-driver": "^4.0.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "3.11"
   },
   "dependencies": {
     "sigma": "^1.2.1"
